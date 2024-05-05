@@ -30,7 +30,7 @@ function App() {
           the page, everything will be lost.
         </div>
 
-        <div className="flex mt-4 space-x-4">
+        <div className="flex mt-4 space-x-12">
           <div className="w-1/2">
             <h2 className="text-2xl mb-4">Transaction details</h2>
             <div className="my-4">
@@ -41,7 +41,7 @@ function App() {
                 type="number"
                 name="purchasePrice"
                 id="purchasePrice"
-                className="w-full bg-slate-100 rounded h-8 px-2 my-2"
+                className="w-full bg-slate-100 rounded h-12 px-2 my-2"
                 placeholder="1234.56"
                 onChange={(e) => setPurchasePrice(e.target.value)}
               />
@@ -55,7 +55,7 @@ function App() {
                 type="date"
                 name="purchaseDate"
                 id="purchaseDate"
-                className="w-full bg-slate-100 rounded h-8 px-2 my-2"
+                className={`w-full bg-slate-100 rounded h-12 px-2 my-2`}
                 value={formatDate(purchaseDate)}
                 onChange={(e) => {
                   setPurchaseDate(new Date(e.target.value));
