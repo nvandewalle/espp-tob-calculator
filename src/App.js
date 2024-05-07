@@ -39,7 +39,17 @@ function App() {
                 />
               ),
             },
-            { title: "Form", content: <Form /> },
+            {
+              title: "Form",
+              content: (
+                <Form
+                  language={language}
+                  purchaseDate={purchaseDate}
+                  euroPurchasePrice={euroPurchasePrice}
+                  tob={tob}
+                />
+              ),
+            },
             { title: "Payment" },
             { title: "Email" },
           ]}

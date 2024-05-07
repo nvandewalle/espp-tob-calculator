@@ -4,6 +4,7 @@ const TransactionDetails = ({
   setPurchasePrice,
   setPurchaseDate,
   purchaseDate,
+  purchasePrice,
 }) => {
   return (
     <>
@@ -17,6 +18,7 @@ const TransactionDetails = ({
           className="w-full bg-slate-100 rounded h-12 px-2 my-2"
           placeholder="1234.56"
           onChange={(e) => setPurchasePrice(e.target.value)}
+          value={purchasePrice}
         />
       </div>
       <div className="my-4">

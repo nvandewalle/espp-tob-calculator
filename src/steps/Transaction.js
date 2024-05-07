@@ -16,6 +16,7 @@ const Transaction = ({
       <div className="md:w-1/2">
         <TransactionDetails
           setPurchasePrice={setPurchasePrice}
+          purchasePrice={purchasePrice}
           setPurchaseDate={setPurchaseDate}
           purchaseDate={purchaseDate}
         />
