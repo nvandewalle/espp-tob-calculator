@@ -21,15 +21,17 @@ const Transaction = ({
           purchaseDate={purchaseDate}
         />
       </div>
-      <div className="md:w-1/2 bg-blue-50 shadow-md rounded-xl p-4 flex flex-col">
-        <TOBResults
-          purchaseDate={purchaseDate}
-          purchasePrice={purchasePrice}
-          tob={tob}
-          setTob={setTob}
-          euroPurchasePrice={euroPurchasePrice}
-          setEuroPurchasePrice={setEuroPurchasePrice}
-        />
+      <div className="md:w-1/2">
+        <div className=" bg-blue-50 shadow-md rounded-xl p-4 flex flex-col">
+          <TOBResults
+            purchaseDate={purchaseDate}
+            purchasePrice={purchasePrice}
+            tob={tob}
+            setTob={setTob}
+            euroPurchasePrice={euroPurchasePrice}
+            setEuroPurchasePrice={setEuroPurchasePrice}
+          />
+        </div>
       </div>
     </div>
   );

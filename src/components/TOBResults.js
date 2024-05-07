@@ -59,7 +59,11 @@ const TOBResults = ({
           <p>Details:</p>
           <ul className="list-disc list-inside ">
             <li>Purchase price: {purchasePrice}$</li>
-            <li>Exchange rate on purchase date: {exchangeRate}</li>
+            <li>
+              Exchange rate on {purchaseDate.getDate()}/
+              {purchaseDate.getMonth() + 1}/{purchaseDate.getFullYear()}:{" "}
+              {exchangeRate}
+            </li>
             <li>Purchase price in EUR: {euroPurchasePrice}€</li>
             <li>
               TOB to be paid: {euroPurchasePrice} x 0.35% = {tob}€
