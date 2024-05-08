@@ -20,7 +20,11 @@ function App() {
 
   return (
     <>
-      <NavBar language={language} setLanguage={setLanguage} />
+      <NavBar
+        language={language}
+        setLanguage={setLanguage}
+        activeStep={activeStep}
+      />
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-4">
         {/* <div className="bg-red-200 rounded px-4 py-2">
           None of the data you enter on this website is retained. If you refresh
