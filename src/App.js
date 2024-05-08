@@ -5,6 +5,8 @@ import { lastESPPDay } from "./helper/helpers";
 import Stepper from "./components/Stepper";
 import Transaction from "./steps/Transaction";
 import Form from "./steps/Form";
+import Payment from "./steps/Payment";
+import Email from "./steps/Email";
 
 function App() {
   const [language, setLanguage] = useState("fr");
@@ -13,6 +15,8 @@ function App() {
   const [tob, setTob] = useState(0);
   const [euroPurchasePrice, setEuroPurchasePrice] = useState(0);
   const [activeStep, setActiveStep] = useState(0);
+
+  const [isValid, setIsValid] = useState(false);
 
   return (
     <>
@@ -36,8 +40,13 @@ function App() {
                   setTob={setTob}
                   euroPurchasePrice={euroPurchasePrice}
                   setEuroPurchasePrice={setEuroPurchasePrice}
+                  isValid={isValid}
+                  setIsValid={setIsValid}
+                  activeStep={activeStep}
+                  setActiveStep={setActiveStep}
                 />
               ),
+              disable: false,
             },
             {
               title: "Form",
@@ -47,11 +56,36 @@ function App() {
                   purchaseDate={purchaseDate}
                   euroPurchasePrice={euroPurchasePrice}
                   tob={tob}
+                  activeStep={activeStep}
+                  setActiveStep={setActiveStep}
                 />
               ),
+              disable: !isValid,
             },
-            { title: "Payment" },
-            { title: "Email" },
+            {
+              title: "Payment",
+              content: (
+                <Payment
+                  tob={tob}
+                  language={language}
+                  purchaseDate={purchaseDate}
+                  activeStep={activeStep}
+                  setActiveStep={setActiveStep}
+                />
+              ),
+              disable: !isValid,
+            },
+            {
+              title: "Email",
+              content: (
+                <Email
+                  language={language}
+                  purchaseDate={purchaseDate}
+                  tob={tob}
+                />
+              ),
+              disable: !isValid,
+            },
           ]}
           active={activeStep}
           setActive={setActiveStep}

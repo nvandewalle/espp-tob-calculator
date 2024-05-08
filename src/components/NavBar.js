@@ -23,6 +23,14 @@ const NavBar = ({ language = "fr", setLanguage }) => {
             >
               NL
             </button>
+            <button
+              className={`px-2 py-1 mx-1 rounded ${
+                language === "en" ? "bg-gray-600" : ""
+              }`}
+              onClick={() => setLanguage("en")}
+            >
+              EN
+            </button>
           </div>
         </div>
       </div>

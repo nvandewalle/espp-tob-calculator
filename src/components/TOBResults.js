@@ -10,6 +10,8 @@ const TOBResults = ({
   setTob,
   euroPurchasePrice,
   setEuroPurchasePrice,
+  isValid,
+  setIsValid,
 }) => {
   const [exchangeRate, setExchangeRate] = useState(1);
   const [showDetails, setShowDetails] = useState(false);
@@ -28,13 +30,16 @@ const TOBResults = ({
     setTob(roundToTwoDecimals(euroPurchasePrice * 0.0035));
   }, [euroPurchasePrice, setTob]);
 
-  if (purchasePrice === 0 || exchangeRate === null) {
+  useEffect(() => {
+    setIsValid(purchasePrice > 0 && exchangeRate !== null);
+  }, [purchasePrice, exchangeRate, setIsValid]);
+
+  if (!isValid) {
     return (
       <>
         <img src={WaitImage} alt="Loading..." className="w-1/2 mx-auto my-8" />
         <p className="m-auto text-center">
-          Please, fill in the form on the left and make sure to select a valid
-          transaction date.
+          Please insert a valid purchase price and date.
         </p>
       </>
     );
@@ -62,7 +67,16 @@ const TOBResults = ({
             <li>
               Exchange rate on {purchaseDate.getDate()}/
               {purchaseDate.getMonth() + 1}/{purchaseDate.getFullYear()}:{" "}
-              {exchangeRate}
+              {exchangeRate} (source:{" "}
+              <a
+                href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="underline hover:no-underline"
+              >
+                ECB
+              </a>
+              )
             </li>
             <li>Purchase price in EUR: {euroPurchasePrice}€</li>
             <li>
