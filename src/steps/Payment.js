@@ -45,7 +45,7 @@ const Payment = ({
           Next: Email &rarr;
         </button>
       </div>
-      <div className="md:w-1/2">
+      <div className="md:w-1/2 hidden md:block">
         <img
           src={WireImage}
           alt="Wire the TOB"
