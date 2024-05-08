@@ -25,11 +25,7 @@ function App() {
         setLanguage={setLanguage}
         activeStep={activeStep}
       />
-      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-4">
-        {/* <div className="bg-red-200 rounded px-4 py-2">
-          None of the data you enter on this website is retained. If you refresh
-          the page, everything will be lost.
-        </div> */}
+      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-4 mb-16">
         <Stepper
           steps={[
             {
@@ -95,6 +91,10 @@ function App() {
           setActive={setActiveStep}
         />
       </div>
+      <footer className="text-center py-2 fixed bottom-0 w-full bg-gray-200">
+        None of the data you enter on this website is retained. If you refresh
+        the page, everything will be lost.
+      </footer>
     </>
   );
 }
