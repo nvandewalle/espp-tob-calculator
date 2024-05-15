@@ -1,4 +1,5 @@
-import { formatDate } from "../helper/helpers";
+import {useEffect, useState} from "react";
+import {formatDate, isESPPDateValid} from "../helper/helpers";
 
 const TransactionDetails = ({
   setPurchasePrice,
@@ -6,6 +7,12 @@ const TransactionDetails = ({
   purchaseDate,
   purchasePrice,
 }) => {
+  const [isValidDate, setIsValidDate] = useState(true);
+
+  useEffect(() => {
+    setIsValidDate(isESPPDateValid(purchaseDate));
+  }, [purchaseDate]);
+
   return (
     <>
       <h2 className="text-2xl mb-4">Transaction details</h2>
@@ -34,6 +41,11 @@ const TransactionDetails = ({
           }}
           max={formatDate(new Date())}
         />
+        {!isValidDate && (
+          <p className="text-red-500 text-sm">
+            Purchase date cannot be a weekend or a bank holiday
+          </p>
+        )}
       </div>
     </>
   );

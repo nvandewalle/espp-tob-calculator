@@ -39,7 +39,7 @@ const TOBResults = ({
       <>
         <img src={WaitImage} alt="Loading..." className="w-1/2 mx-auto my-8" />
         <p className="m-auto text-center">
-          Please insert a valid purchase price and date.
+          Please insert a valid purchase price and date (not a weekend or bank holiday).
         </p>
       </>
     );
