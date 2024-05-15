@@ -26,8 +26,13 @@ function lastESPPDay(currentDate) {
     lastWorkingDate.setDate(lastWorkingDate.getDate() - 1);
   }
 
-  if (lastWorkingDate === new Date("2024-03-29")) {
-    lastWorkingDate = new Date("2024-03-28");
+  const March29 = new Date("2024-03-29");
+  if (
+    lastWorkingDate.getDate() === March29.getDate() &&
+    lastWorkingDate.getMonth() === March29.getMonth() &&
+    lastWorkingDate.getFullYear() === March29.getFullYear()
+  ) {
+    return new Date("2024-03-28");
   }
 
   return lastWorkingDate;
@@ -61,9 +66,18 @@ function roundToTwoDecimals(num) {
   return Math.round(num * 100) / 100;
 }
 
+function isESPPDateValid(date) {
+  return (
+    date.getDay() !== 0 &&
+    date.getDay() !== 6 &&
+    date.getTime() !== new Date("2024-03-29").getTime()
+  );
+}
+
 module.exports = {
   formatDate,
   lastESPPDay,
   getExchangeRate,
   roundToTwoDecimals,
+  isESPPDateValid,
 };
