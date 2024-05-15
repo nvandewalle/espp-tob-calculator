@@ -13,7 +13,7 @@ const Stepper = ({ steps, active, setActive }) => {
                 onClick={() =>
                   step.disable
                     ? alert(
-                        "Transaction details must be valid to access this section"
+                        "Transaction details must be valid to access this section. Please, make sure you inserted a non-zero value for the transaction amount and that the date is not a weekend or a bank holiday."
                       )
                     : setActive(index)
                 }
@@ -36,8 +36,8 @@ const Stepper = ({ steps, active, setActive }) => {
                 onClick={() =>
                   step.disable
                     ? alert(
-                        "Transaction details must be valid to access this section"
-                      )
+                      "Transaction details must be valid to access this section. Please, make sure you inserted a non-zero value for the transaction amount and that the date is not a weekend or a bank holiday."
+                    )
                     : setActive(index)
                 }
               >
