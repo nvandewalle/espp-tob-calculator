@@ -1,6 +1,8 @@
-import ESPPFR from "../assets/espp-fr.png";
-import ESPPNL from "../assets/espp-nl.png";
-import ESPPEN from "../assets/espp-en.png";
+import PDFNL from "../assets/tob-nl.pdf";
+import PDFFR from "../assets/tob-fr.pdf";
+import PDFEN from "../assets/tob-en.pdf";
+import { useEffect, useState } from "react";
+import generatePDF from "../helper/pdfGenerator";
 
 const Form = ({
   language,
@@ -10,6 +12,13 @@ const Form = ({
   activeStep,
   setActiveStep,
 }) => {
+  const [pdf, setPdf] = useState(
+    language === "nl" ? PDFNL : language === "fr" ? PDFFR : PDFEN
+  );
+  useEffect(() => {
+    generatePDF(setPdf, language, purchaseDate, euroPurchasePrice, tob);
+  }, [language, tob, purchaseDate, euroPurchasePrice]);
+
   return (
     <div className="flex mt-4 md:space-x-12 flex-col md:flex-row">
       <div className="md:w-1/2 flex flex-col">
@@ -71,15 +80,12 @@ const Form = ({
         </button>
       </div>
       <div className="md:w-1/2 mt-4 md:mt-0">
-        {language === "fr" && (
-          <img src={ESPPFR} alt="ESPP Français" className="w-full" />
-        )}
-        {language === "nl" && (
-          <img src={ESPPNL} alt="ESPP Nederlands" className="w-full" />
-        )}
-        {language === "en" && (
-          <img src={ESPPEN} alt="ESPP English" className="w-full" />
-        )}
+        <iframe
+          src={pdf}
+          type="application/pdf"
+          title="pdf"
+          className="w-full aspect-square"
+        />
       </div>
     </div>
   );

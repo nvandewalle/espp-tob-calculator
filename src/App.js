@@ -4,9 +4,10 @@ import NavBar from "./components/NavBar";
 import { lastESPPDay } from "./helper/helpers";
 import Stepper from "./components/Stepper";
 import Transaction from "./steps/Transaction";
-import Form from "./steps/Form";
 import Payment from "./steps/Payment";
 import Email from "./steps/Email";
+// import OldForm from "./steps/OldForm";
+import Form from "./steps/Form";
 
 function App() {
   const [language, setLanguage] = useState("fr");
