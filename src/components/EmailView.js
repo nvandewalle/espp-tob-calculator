@@ -3,6 +3,27 @@ import AttachmentImage from "../assets/attach-file.png";
 import { handleCopy } from "../helper/helpers";
 
 const EmailView = ({ language, purchaseDate, tob, ssn, address, name }) => {
+  const CopyToClipboard = (element) => {
+    var doc = document,
+      text = doc.getElementById(element),
+      range,
+      selection;
+
+    if (doc.body.createTextRange) {
+      range = doc.body.createTextRange();
+      range.moveToElementText(text);
+      range.select();
+    } else if (window.getSelection) {
+      selection = window.getSelection();
+      range = doc.createRange();
+      range.selectNodeContents(text);
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+  };
+
   return (
     <div className="rounded-2xl shadow-md mx-auto flex-col ">
       <div className="bg-gray-100 rounded-t-xl py-2 px-4">
@@ -27,7 +48,11 @@ const EmailView = ({ language, purchaseDate, tob, ssn, address, name }) => {
           {translations.emailSubject[language]}
         </strong>
       </div>
-      <div className="py-2 px-4">
+      <div
+        className="py-2 px-4"
+        id="emailBody"
+        onClick={() => CopyToClipboard("emailBody")}
+      >
         {translations.dear[language]},
         <br />
         <br />
@@ -68,12 +93,10 @@ const EmailView = ({ language, purchaseDate, tob, ssn, address, name }) => {
           <span className="text-red-600">[Your Social Security Number]</span>
         )}{" "}
         {purchaseDate.getMonth() + 1}/{purchaseDate.getFullYear()} (
-        {translations.seeAttached[language]})
-        <br />
-        <br />
-        <span className="text-red-600">[Your signature]</span>
-        <br />
+        {translations.seeAttached[language]}).
       </div>
+      <span className="text-red-600 px-4">[Your signature]</span>
+      <br />
       <div className="py-2 px-4 mt-4">
         Attachments:
         <ul className="flex flex-row my-2">
