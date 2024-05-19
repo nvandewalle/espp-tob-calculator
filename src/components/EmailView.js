@@ -1,6 +1,7 @@
 import translations from "../helper/translations";
 import AttachmentImage from "../assets/attach-file.png";
 import { handleCopy } from "../helper/helpers";
+import { useState } from "react";
 
 const EmailView = ({ language, purchaseDate, tob, ssn, address, name }) => {
   const CopyToClipboard = (element) => {
@@ -22,7 +23,13 @@ const EmailView = ({ language, purchaseDate, tob, ssn, address, name }) => {
     }
     document.execCommand("copy");
     window.getSelection().removeAllRanges();
+    setBodyCopied(true);
+    setTimeout(() => {
+      setBodyCopied(false);
+    }, 1000);
   };
+
+  const [bodyCopied, setBodyCopied] = useState(false);
 
   return (
     <div className="rounded-2xl shadow-md mx-auto flex-col ">
@@ -48,8 +55,15 @@ const EmailView = ({ language, purchaseDate, tob, ssn, address, name }) => {
           {translations.emailSubject[language]}
         </strong>
       </div>
+      <div className="relative">
+        {bodyCopied && (
+          <div className="text-green-600 absolute top-2 right-4">
+            📋 Copied!
+          </div>
+        )}
+      </div>
       <div
-        className="py-2 px-4"
+        className="py-2 px-4 cursor-pointer"
         id="emailBody"
         onClick={() => CopyToClipboard("emailBody")}
       >
