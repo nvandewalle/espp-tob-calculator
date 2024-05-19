@@ -1,3 +1,5 @@
+import { IMaskInput } from "react-imask";
+
 const PIIForm = ({ ssn, setSsn, name, setName, address, setAddress }) => {
   return (
     <>
@@ -8,7 +10,8 @@ const PIIForm = ({ ssn, setSsn, name, setName, address, setAddress }) => {
 
       <div className="my-4">
         <label htmlFor="purchasePrice">Social Security Number (SSN)</label>
-        <input
+        <IMaskInput
+          mask="00.00.00-000.00"
           name="ssn"
           id="ssn"
           className="w-full bg-slate-100 rounded h-12 px-2 my-2"

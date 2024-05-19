@@ -1,17 +1,8 @@
 import translations from "../helper/translations";
 import AttachmentImage from "../assets/attach-file.png";
+import { handleCopy } from "../helper/helpers";
 
 const EmailView = ({ language, purchaseDate, tob, ssn, address, name }) => {
-  const handleCopy = (text) => {
-    return (e) => {
-      navigator.clipboard.writeText(text);
-      e.target.textContent = "Copied!";
-      setTimeout(() => {
-        e.target.textContent = text;
-      }, 800);
-    };
-  };
-
   return (
     <div className="rounded-2xl shadow-md mx-auto flex-col ">
       <div className="bg-gray-100 rounded-t-xl py-2 px-4">
