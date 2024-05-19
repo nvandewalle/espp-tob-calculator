@@ -18,11 +18,12 @@ const Form = ({
   setSsn,
   address,
   setAddress,
+  location,
+  setLocation,
 }) => {
   const [pdf, setPdf] = useState(
     language === "nl" ? PDFNL : language === "fr" ? PDFFR : PDFEN
   );
-  const [location, setLocation] = useState("");
 
   useEffect(() => {
     generatePDF(
@@ -102,12 +103,21 @@ const Form = ({
           />
         </div>
 
-        <button
+        <div className="my-1 bg-red-500 text-white px-4 py-2 rounded">
+          Do not forget to <strong>validate</strong> and <strong>sign</strong>{" "}
+          the form.
+        </div>
+
+        <a
           className="bg-blue-700 text-white rounded py-1 px-4 hover:bg-blue-900 inline-block self-center mt-4"
+          href={pdf}
+          download="tob-form.pdf"
+          target="_blank"
+          rel="noreferrer"
           onClick={() => setActiveStep(activeStep + 1)}
         >
-          Next: Tax Paiement &rarr;
-        </button>
+          Download and move to next step &rarr;
+        </a>
       </div>
       <div className="md:w-1/2 mt-4 md:mt-0">
         <iframe

@@ -19,6 +19,7 @@ function App() {
   const [ssn, setSsn] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
+  const [location, setLocation] = useState("");
 
   const [isValid, setIsValid] = useState(false);
 
@@ -68,6 +69,8 @@ function App() {
                   setAddress={setAddress}
                   ssn={ssn}
                   setSsn={setSsn}
+                  location={location}
+                  setLocation={setLocation}
                 />
               ),
               disable: !isValid,
@@ -81,6 +84,7 @@ function App() {
                   purchaseDate={purchaseDate}
                   activeStep={activeStep}
                   setActiveStep={setActiveStep}
+                  ssn={ssn}
                 />
               ),
               disable: !isValid,

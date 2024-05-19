@@ -2,6 +2,7 @@ import PDFNL from "../assets/tob-nl.pdf";
 import PDFFR from "../assets/tob-fr.pdf";
 import PDFEN from "../assets/tob-en.pdf";
 import { PDFDocument, rgb } from "pdf-lib";
+import translations from "./translations";
 
 const today = new Date();
 const color = rgb(0.1, 0.33, 0.6);
@@ -196,16 +197,30 @@ const position = {
   },
   nameForSignature: {
     fr: {
-      x: 80,
-      y: 311,
+      x: 75,
+      y: 285,
     },
     nl: {
-      x: 84,
-      y: 266,
+      x: 80,
+      y: 246,
     },
     en: {
-      x: 85,
-      y: 255,
+      x: 285,
+      y: 295,
+    },
+  },
+  quality: {
+    fr: {
+      x: 75,
+      y: 265,
+    },
+    nl: {
+      x: 80,
+      y: 230,
+    },
+    en: {
+      x: 285,
+      y: 280,
     },
   },
 };
@@ -355,6 +370,20 @@ async function generatePdf(
       color: color,
     }
   );
+
+  // Name for signature
+  secondPage.drawText(name, {
+    ...position.nameForSignature[language],
+    size: 13,
+    color: color,
+  });
+
+  // Quality of the user
+  secondPage.drawText(translations.userQuality[language], {
+    ...position.quality[language],
+    size: 13,
+    color: color,
+  });
 
   const pdfBytes = await pdfDoc.save();
   const bytes = new Uint8Array(pdfBytes);
