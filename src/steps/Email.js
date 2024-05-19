@@ -21,7 +21,9 @@ const Email = ({ language, purchaseDate, tob }) => {
         {translations.emailIntro[language]}
         {"  "}
         {translations.months[purchaseDate.getMonth() + 1][language]}{" "}
-        {purchaseDate.getFullYear()}.
+        {purchaseDate.getFullYear()}
+        {language === "nl" && " "}
+        {translations.emailIntroContinued[language]}.
         <br />
         {translations.ssn[language]}:{" "}
         <span className="text-red-600">[Your Social Security Number]</span>
