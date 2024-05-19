@@ -19,6 +19,11 @@ const translations = {
     fr: "Veuillez-trouver, ci-joints, le document de déclaration TOB ainsi qu'une copie de la preuve de paiement de cette taxe pour le mois de",
     nl: "Gelieve in bijlage het document van de TOB-aangifte en een kopie van het betalingsbewijs van deze belasting voor de maand",
   },
+  emailIntroContinued: {
+    en: "",
+    fr: "",
+    nl: "te vinden",
+  },
   months: {
     1: {
       en: "January",
