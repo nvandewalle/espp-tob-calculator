@@ -16,6 +16,9 @@ function App() {
   const [tob, setTob] = useState(0);
   const [euroPurchasePrice, setEuroPurchasePrice] = useState(0);
   const [activeStep, setActiveStep] = useState(0);
+  const [ssn, setSsn] = useState("");
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
 
   const [isValid, setIsValid] = useState(false);
 
@@ -59,6 +62,12 @@ function App() {
                   tob={tob}
                   activeStep={activeStep}
                   setActiveStep={setActiveStep}
+                  name={name}
+                  setName={setName}
+                  address={address}
+                  setAddress={setAddress}
+                  ssn={ssn}
+                  setSsn={setSsn}
                 />
               ),
               disable: !isValid,
@@ -83,6 +92,12 @@ function App() {
                   language={language}
                   purchaseDate={purchaseDate}
                   tob={tob}
+                  ssn={ssn}
+                  setSsn={setSsn}
+                  name={name}
+                  setName={setName}
+                  address={address}
+                  setAddress={setAddress}
                 />
               ),
               disable: !isValid,

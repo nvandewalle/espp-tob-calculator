@@ -3,6 +3,7 @@ import PDFFR from "../assets/tob-fr.pdf";
 import PDFEN from "../assets/tob-en.pdf";
 import { PDFDocument, rgb } from "pdf-lib";
 
+const today = new Date();
 const color = rgb(0.1, 0.33, 0.6);
 const position = {
   titleDate: {
@@ -17,6 +18,62 @@ const position = {
     en: {
       x: 271,
       y: 724,
+    },
+  },
+  ssn: {
+    fr: {
+      x: 305,
+      y: 586,
+    },
+    nl: {
+      x: 305,
+      y: 586,
+    },
+    en: {
+      x: 302,
+      y: 656,
+    },
+  },
+  name: {
+    fr: {
+      x: 305,
+      y: 574,
+    },
+    nl: {
+      x: 305,
+      y: 574,
+    },
+    en: {
+      x: 302,
+      y: 643,
+    },
+  },
+  addressLine1: {
+    fr: {
+      x: 305,
+      y: 550,
+    },
+    nl: {
+      x: 305,
+      y: 550,
+    },
+    en: {
+      x: 302,
+      y: 619,
+    },
+  },
+  addressLine2: {
+    fr: {
+      x: 305,
+      y: 538,
+    },
+    nl: {
+      x: 305,
+      y: 538,
+    },
+    en: {
+      x: 302,
+      y: 607,
     },
   },
   amount: {
@@ -109,9 +166,61 @@ const position = {
     nl: { x: 325, y: 405, width: 124, height: 21 },
     en: { x: 320, y: 360, width: 124, height: 21 },
   },
+  location: {
+    fr: {
+      x: 80,
+      y: 311,
+    },
+    nl: {
+      x: 84,
+      y: 266,
+    },
+    en: {
+      x: 85,
+      y: 255,
+    },
+  },
+  date: {
+    fr: {
+      x: 380,
+      y: 311,
+    },
+    nl: {
+      x: 384,
+      y: 266,
+    },
+    en: {
+      x: 200,
+      y: 255,
+    },
+  },
+  nameForSignature: {
+    fr: {
+      x: 80,
+      y: 311,
+    },
+    nl: {
+      x: 84,
+      y: 266,
+    },
+    en: {
+      x: 85,
+      y: 255,
+    },
+  },
 };
 
-async function generatePdf(setPdf, language, date, euroAmount, tob) {
+async function generatePdf(
+  setPdf,
+  language,
+  date,
+  euroAmount,
+  tob,
+  ssn,
+  name,
+  address,
+  location
+) {
   let PDF;
   switch (language) {
     case "nl":
@@ -138,18 +247,51 @@ async function generatePdf(setPdf, language, date, euroAmount, tob) {
   month = month < 10 ? "0" + month : month;
   const year = date.getFullYear().toString().substr(-2);
 
+  // Date on top
   firstPage.drawText(month + " " + year, {
     ...position.titleDate[language],
     size: 13,
     color: color,
   });
 
+  // SSN
+  firstPage.drawText(ssn, {
+    ...position.ssn[language],
+    size: 13,
+    color: color,
+  });
+
+  // Name
+  firstPage.drawText(name, {
+    ...position.name[language],
+    size: 13,
+    color: color,
+  });
+
+  // Address line 1
+  firstPage.drawText(address.split(",")[0], {
+    ...position.addressLine1[language],
+    size: 13,
+    color: color,
+  });
+
+  if (address.split(",").length > 1) {
+    // Address line 2
+    firstPage.drawText(address.split(",")[1].trim(), {
+      ...position.addressLine2[language],
+      size: 13,
+      color: color,
+    });
+  }
+
+  // 1 in 1st column
   firstPage.drawText("1", {
     ...position.amount[language],
     size: 16,
     color: color,
   });
 
+  // Euro full amount
   firstPage.drawRectangle({
     ...position.euroAmountRect[language],
     color: rgb(1, 1, 1),
@@ -161,6 +303,7 @@ async function generatePdf(setPdf, language, date, euroAmount, tob) {
     color: color,
   });
 
+  // Tob amount
   firstPage.drawRectangle({
     ...position.tobRect[language],
     color: rgb(1, 1, 1),
@@ -172,6 +315,7 @@ async function generatePdf(setPdf, language, date, euroAmount, tob) {
     color: color,
   });
 
+  // Sub-total below table
   firstPage.drawRectangle({
     ...position.subTotalRect[language],
     color: rgb(1, 1, 1),
@@ -183,6 +327,7 @@ async function generatePdf(setPdf, language, date, euroAmount, tob) {
     color: color,
   });
 
+  // Total amount on page 2
   secondPage.drawRectangle({
     ...position.totalRect[language],
     color: rgb(1, 1, 1),
@@ -193,6 +338,23 @@ async function generatePdf(setPdf, language, date, euroAmount, tob) {
     size: 16,
     color: color,
   });
+
+  // Location of the user
+  secondPage.drawText(location, {
+    ...position.location[language],
+    size: 13,
+    color: color,
+  });
+
+  // Today's date in the DD/MM/YYYY format
+  secondPage.drawText(
+    today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear(),
+    {
+      ...position.date[language],
+      size: 13,
+      color: color,
+    }
+  );
 
   const pdfBytes = await pdfDoc.save();
   const bytes = new Uint8Array(pdfBytes);
