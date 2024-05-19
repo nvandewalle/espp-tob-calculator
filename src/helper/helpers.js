@@ -74,10 +74,21 @@ function isESPPDateValid(date) {
   );
 }
 
+function handleCopy(text) {
+  return (e) => {
+    navigator.clipboard.writeText(text);
+    e.target.textContent = "📋 Copied!";
+    setTimeout(() => {
+      e.target.textContent = text;
+    }, 800);
+  };
+}
+
 module.exports = {
   formatDate,
   lastESPPDay,
   getExchangeRate,
   roundToTwoDecimals,
   isESPPDateValid,
+  handleCopy,
 };
