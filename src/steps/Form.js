@@ -111,7 +111,9 @@ const Form = ({
         <a
           className="bg-blue-700 text-white rounded py-1 px-4 hover:bg-blue-900 inline-block self-center mt-4"
           href={pdf}
-          download="tob-form.pdf"
+          download={`tob-form-${purchaseDate.getFullYear()}-${
+            purchaseDate.getMonth() + 1
+          }.pdf`}
           target="_blank"
           rel="noreferrer"
           onClick={() => setActiveStep(activeStep + 1)}
