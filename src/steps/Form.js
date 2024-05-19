@@ -104,8 +104,8 @@ const Form = ({
         </div>
 
         <div className="my-1 bg-red-500 text-white px-4 py-2 rounded">
-          Do not forget to <strong>validate</strong> and <strong>sign</strong>{" "}
-          the form.
+          Do not forget to <strong>verify</strong> and <strong>sign</strong> the
+          form.
         </div>
 
         <a
@@ -119,12 +119,12 @@ const Form = ({
           Download and move to next step &rarr;
         </a>
       </div>
-      <div className="md:w-1/2 mt-4 md:mt-0">
+      <div className="md:w-1/2 mt-4 md:mt-0 flex-col flex">
         <iframe
           src={pdf}
           type="application/pdf"
           title="pdf"
-          className="w-full aspect-square"
+          className="w-full flex-grow"
         />
       </div>
     </div>
