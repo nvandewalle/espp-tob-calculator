@@ -7,6 +7,7 @@ const Payment = ({
   purchaseDate,
   activeStep,
   setActiveStep,
+  ssn,
 }) => {
   return (
     <div className="flex mt-4 md:space-x-12 flex-col md:flex-row">
@@ -29,9 +30,13 @@ const Payment = ({
                 Communication:{" "}
                 <strong>
                   TOB{" "}
-                  <span className="text-red-600">
-                    [Your Social Security Number]
-                  </span>{" "}
+                  {ssn.length > 0 ? (
+                    ssn.replace(/[.-\s]/g, "")
+                  ) : (
+                    <span className="text-red-600">
+                      [Your Social Security Number]
+                    </span>
+                  )}{" "}
                   {purchaseDate.getMonth() + 1}/{purchaseDate.getFullYear()}
                 </strong>
               </li>

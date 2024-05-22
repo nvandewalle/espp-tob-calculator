@@ -116,6 +116,11 @@ const translations = {
     fr: "voir preuve de paiement en annexe",
     nl: "zie bijgevoegd betalingsbewijs",
   },
+  userQuality: {
+    en: "Instructing party",
+    fr: "Donneur d'ordre",
+    nl: "Ordergever",
+  },
 };
 
 export default translations;

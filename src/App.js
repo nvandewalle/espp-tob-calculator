@@ -4,9 +4,10 @@ import NavBar from "./components/NavBar";
 import { lastESPPDay } from "./helper/helpers";
 import Stepper from "./components/Stepper";
 import Transaction from "./steps/Transaction";
-import Form from "./steps/Form";
 import Payment from "./steps/Payment";
 import Email from "./steps/Email";
+// import OldForm from "./steps/OldForm";
+import Form from "./steps/Form";
 
 function App() {
   const [language, setLanguage] = useState("fr");
@@ -15,6 +16,10 @@ function App() {
   const [tob, setTob] = useState(0);
   const [euroPurchasePrice, setEuroPurchasePrice] = useState(0);
   const [activeStep, setActiveStep] = useState(0);
+  const [ssn, setSsn] = useState("");
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [location, setLocation] = useState("");
 
   const [isValid, setIsValid] = useState(false);
 
@@ -58,6 +63,14 @@ function App() {
                   tob={tob}
                   activeStep={activeStep}
                   setActiveStep={setActiveStep}
+                  name={name}
+                  setName={setName}
+                  address={address}
+                  setAddress={setAddress}
+                  ssn={ssn}
+                  setSsn={setSsn}
+                  location={location}
+                  setLocation={setLocation}
                 />
               ),
               disable: !isValid,
@@ -71,6 +84,7 @@ function App() {
                   purchaseDate={purchaseDate}
                   activeStep={activeStep}
                   setActiveStep={setActiveStep}
+                  ssn={ssn}
                 />
               ),
               disable: !isValid,
@@ -82,6 +96,12 @@ function App() {
                   language={language}
                   purchaseDate={purchaseDate}
                   tob={tob}
+                  ssn={ssn}
+                  setSsn={setSsn}
+                  name={name}
+                  setName={setName}
+                  address={address}
+                  setAddress={setAddress}
                 />
               ),
               disable: !isValid,
