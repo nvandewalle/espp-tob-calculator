@@ -10,7 +10,7 @@ import Email from "./steps/Email";
 import Form from "./steps/Form";
 
 function App() {
-  const [language, setLanguage] = useState("fr");
+  const [language, setLanguage] = useState("en");
   const [purchasePrice, setPurchasePrice] = useState(0);
   const [purchaseDate, setPurchaseDate] = useState(lastESPPDay(new Date()));
   const [tob, setTob] = useState(0);
@@ -113,7 +113,7 @@ function App() {
       </div>
       <footer className="text-center py-2 fixed bottom-0 w-full bg-gray-200">
         None of the data you enter on this website is retained. If you refresh
-        the page, everything will be lost.
+        the page, everything will be lost. For any question or feedback, reach out to Nicolas van de Walle.
       </footer>
     </>
   );

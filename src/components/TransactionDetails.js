@@ -17,7 +17,7 @@ const TransactionDetails = ({
     <>
       <h2 className="text-2xl mb-4">Transaction details</h2>
       <div className="my-4">
-        <label htmlFor="purchasePrice">Accumulated contributions (USD)</label>
+        <label htmlFor="purchasePrice">Total purchase amount (USD)</label>
         <input
           type="number"
           name="purchasePrice"
